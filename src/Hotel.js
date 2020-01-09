@@ -11,6 +11,9 @@ class Hotel {
   findBookingsByDay(day) {
     return this.data.bookings.filter(booking => booking.date === day)
   }
+  findRevenueAnyDay(day) {
+    return this.data.bookings.filter(booking => booking.date === day);
+  }
 }
 
 

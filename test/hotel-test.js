@@ -50,6 +50,17 @@ describe('Hotel', function() {
     }])
   })
 
-  it.skip('Should find revenue for any given day', function() {
+  it('Should find revenue for any given day', function() {
+    hotel.findRevenueAnyDay("2019/11/20");
+    expect(hotel.findRevenueAnyDay("2019/11/20")).to.deep.equal([
+      { id: 1572293130170,
+        userID: 1,
+        date: '2019/11/20',
+        roomNumber: 1 },
+      { id: 1572293130171,
+        userID: 2,
+        date: '2019/11/20',
+        roomNumber: 2 }
+    ]);
   })
 });
