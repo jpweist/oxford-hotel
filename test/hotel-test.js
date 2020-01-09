@@ -31,14 +31,13 @@ describe('Hotel', function() {
   })
 
   it('Should find user by name', function() {
-
+    hotel.findUserByName('Leatha Ullrich');
+    expect(hotel.findUserByName('Leatha Ullrich')).to.deep.equal([{id: 1, name: 'Leatha Ullrich'}])
   })
 
-  it('Should find bookings for any given day', function() {
-
+  it.skip('Should find bookings for any given day', function() {
   })
 
-  it('Should find revenue for any given day', function() {
-
+  it.skip('Should find revenue for any given day', function() {
   })
 });

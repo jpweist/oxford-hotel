@@ -5,6 +5,9 @@ class Hotel {
   findUserById(id) {
   return this.data.users.filter(user => user.id === id)
   }
+  findUserByName(name) {
+    return this.data.users.filter(user => user.name == name)
+  }
 }
 
 
