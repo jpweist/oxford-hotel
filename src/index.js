@@ -1,7 +1,7 @@
 
 import $ from 'jquery';
 import './css/base.scss';
-
+import domUpdates from './domUpdates.js'
 
 
 
@@ -12,16 +12,13 @@ $('.login-button').on( "click", function() { // login manager or customer
   let userpassword = $('.password').val();
 
   if (userName === 'manager' && userpassword === 'overlook2019') {
-    // console.log(userName)
-
-    window.location = '/manager.html';
+    domUpdates.loadManagerScreen(userName)
   }
    if (userName === 'customer' && userpassword === 'overlook2019') {
-     // let customer1 = new Customer(userName);
-     // console.log(userName)
-    window.location = '/customer.html'
+    domUpdates.loadCustomerScreen(userName)
   }
   if (userName !== 'manager' && userpassword !== 'overlook2019' || userName !== 'customer' && userpassword !== 'overlook2019') {
     console.log('failed login')
+    $('.user-login, .password').addClass('.error')
   }
 })
