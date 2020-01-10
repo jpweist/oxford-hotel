@@ -9,8 +9,8 @@ describe('Hotel', function() {
   let hotel;
 
   beforeEach(() => {
-    hotel = new Hotel(sampleData);
-    // hotel.data = sampleData;
+    hotel = new Hotel();
+    hotel.data = sampleData;
   });
 
   it('Should be an Instance of Hotel', function() {
@@ -27,12 +27,14 @@ describe('Hotel', function() {
   it('Should get a user by id', function() {
     // console.log(hotel.data.users[0].id)
     hotel.findUserById(1);
-    expect(hotel.findUserById(1)).to.deep.equal([{id: 1, name: 'Leatha Ullrich'}]);
+    expect(hotel.findUserById(1)).to.deep.equal(
+      [{id: 1, name: 'Leatha Ullrich'}]);
   })
 
   it('Should find user by name', function() {
     hotel.findUserByName('Leatha Ullrich');
-    expect(hotel.findUserByName('Leatha Ullrich')).to.deep.equal([{id: 1, name: 'Leatha Ullrich'}])
+    expect(hotel.findUserByName('Leatha Ullrich')).to.deep.equal(
+      [{id: 1, name: 'Leatha Ullrich'}])
   })
 
   it('Should find bookings for any given day', function() {
@@ -42,7 +44,7 @@ describe('Hotel', function() {
       userID: 1,
       date: "2019/11/20",
       roomNumber: 1
-      },{
+    }, {
       id: 1572293130171,
       userID: 2,
       date: "2019/11/20",
