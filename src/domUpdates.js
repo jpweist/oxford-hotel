@@ -8,6 +8,7 @@ const domUpdates = {
 
   loadCustomerScreen(user) {
     window.location = '/customer.html'
+    console.log(user)
   }
 
 }
