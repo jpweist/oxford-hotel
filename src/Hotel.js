@@ -7,6 +7,8 @@ class Hotel {
       this.currentUser;
       this.roomsAvailable = [];
       this.roomsAvaiableToday = [];
+      this.roomsBookedToday = [];
+      this.roomsAvaiableByDate = [];
       this.revenuePerDay = 0;
       this.revenueToday = 0;
       this.bookingsByDate = [];
@@ -28,15 +30,6 @@ class Hotel {
     })
     return this.bookingsByDate;
   }
-  findAvailableRoomsByDay(day) {
-    return this.bookings.filter(booking => {
-      if (!booking.date === day) {
-        console.log(bookings)
-
-      }
-    })
-
-  }
   findRevenueAnyDay(day) {
     return this.bookings.filter(booking => {
       this.rooms.forEach(room => {
@@ -45,7 +38,16 @@ class Hotel {
         }
       })
     })
-
+  }
+  findRevenueToday(day) {
+    return this.bookings.filter(booking => {
+      this.rooms.forEach(room => {
+        if (booking.date === day && booking.roomNumber === room.number) {
+          this.revenuePerDay += room.costPerNight;
+        }
+      })
+    })
+    console.log(this.revenuePerDay)
   }
   findRoomsAvailableToday(today) {
     this.bookings.forEach(booking => {
@@ -59,7 +61,49 @@ class Hotel {
     })
     return this.roomsAvaiableToday;
   }
-}
+  // we want to find the rooms booked today
+  findRoomsBookedToday() {
+    this.bookings.forEach(booking => {
+      this.rooms.reduce((acc, room) => {
+        if (booking.roomNumber == room.number) {
+          acc.push(room);
+        }
+        this.roomsBookedToday = acc;
+        return acc;
+      }, [])
+    })
+    return this.roomsBookedToday;
+  }
+  findAvailableRoomsByDate(day) {
+    this.bookings.forEach(booking => {
+      console.log(booking.date)
+      this.rooms.reduce((acc, room) => {
+        if (booking.roomNumber !== room.number) {
+          acc.push(room);
+        }
+        this.roomsAvaiableByDate = acc;
+        return acc;
+      }, [])
+    })
+    return this.roomsAvaiableByDate;
 
+  }
+  bookRoom(roomNumber, id, date, callback) {
+    let item = {
+      "userID": id,
+      "date": date,
+      "roomNumber": parseInt(roomNumber)
+    }
+    fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+      method: 'POST',
+      body: JSON.stringify(item),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => callback(data))
+  }
+}
 
 export default Hotel;

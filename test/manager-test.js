@@ -1,8 +1,8 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-describe('Manager Class Tests', function() {
-  it('should return true', function() {
+describe('Manager Class Tests', () => {
+  it('should return true', () => {
     expect(true).to.equal(true);
   });
 });
