@@ -70,6 +70,18 @@ function makeManager(userName) {
   $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.numberOfRoomsAvailableToday}`)
 }
 
+$('.search-name-button').on( "click", function() {
+  let user = $('.search-name-value').val();
+  console.log(user);
+
+})
+
+
+
+
+
+
+
 function getDateToday() {
   let today = new Date();
   let dd = today.getDate();
