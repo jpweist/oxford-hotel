@@ -1,14 +1,18 @@
 class Hotel {
-    constructor(users, bookings, rooms) {
+    constructor(users, bookings, rooms, dateToday) {
       this.users = users;
       this.bookings = bookings;
       this.rooms = rooms;
+      this.dateToday = dateToday;
       this.currentUser;
+      this.roomsAvailable = [];
+      this.roomsAvaiableToday = [];
       this.revenuePerDay = 0;
+      this.revenueToday = 0;
+      this.bookingsByDate = [];
+      this.roomsAvailableByDate = [];
     }
-  getAPIData() {
-    // console.log(this.data)
-  }
+
   findUserById(id) {
     return this.users.filter(user => user.id === id)
   }
@@ -16,12 +20,20 @@ class Hotel {
     return this.users.filter(user => user.name === name)
   }
   findBookingsByDay(day) {
-    return this.bookings.filter(booking => booking.date === day)
+    this.bookingsByDate = [];
+     this.bookings.forEach(booking => {
+      if (booking.date === day) {
+        this.bookingsByDate.push(booking);
+      }
+    })
+    return this.bookingsByDate;
   }
-  findAvailableRoomsByDay() {
+  findAvailableRoomsByDay(day) {
     return this.bookings.filter(booking => {
-      !booking.date === day
-      console.log(bookings)
+      if (!booking.date === day) {
+        console.log(bookings)
+
+      }
     })
 
   }
@@ -34,6 +46,18 @@ class Hotel {
       })
     })
 
+  }
+  findRoomsAvailableToday(today) {
+    this.bookings.forEach(booking => {
+      this.rooms.reduce((acc, room) => {
+        if (booking.roomNumber !== room.number) {
+          acc.push(room);
+        }
+        this.roomsAvaiableToday = acc;
+        return acc;
+      }, [])
+    })
+    return this.roomsAvaiableToday;
   }
 }
 

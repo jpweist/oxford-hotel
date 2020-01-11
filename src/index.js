@@ -5,7 +5,8 @@ import domUpdates from './domUpdates.js'
 import Hotel from './Hotel';
 import Room from './Room';
 
-var hotel, guest, manager;
+var hotel, guest, manager, dateToday;
+getDateToday()
 
 let users =
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
@@ -26,12 +27,12 @@ let bookings =
   .catch(error => console.log(error))
 
 Promise.all([users, rooms, bookings])
-  .then(allData => {
-    users = allData[0]
-    rooms = allData[1]
-    bookings = allData[2]
-    hotel = new Hotel(users, bookings, rooms);
-    console.log(bookings)
+  .then(data => {
+    users = data[0]
+    rooms = data[1]
+    bookings = data[2]
+    hotel = new Hotel(users, bookings, rooms, dateToday);
+    console.log(hotel)
   })
 
 $('.login-button').on( "click", function() { // login manager or customer
@@ -54,4 +55,20 @@ $('.login-button').on( "click", function() { // login manager or customer
     $('.password').addClass('error')
 
   }
-})
+});
+
+function getDateToday() {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+  dateToday = `${yyyy}/${mm}/${dd}`;
+  console.log(dateToday)
+  return dateToday;
+}

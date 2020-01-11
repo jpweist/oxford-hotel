@@ -6,13 +6,14 @@ import sampleData from './sample-data';
 
 
 describe('Hotel', function() {
-  let hotel, user, bookings, rooms, currentUser;
+  let hotel, user, bookings, rooms, currentUser, dateToday;
 
   beforeEach(() => {
+    dateToday = "2019/11/20";
     user = sampleData.users;
     bookings = sampleData.bookings;
     rooms = sampleData.rooms;
-    hotel = new Hotel(user, bookings, rooms);
+    hotel = new Hotel(user, bookings, rooms, dateToday);
     // hotel.data = sampleData;
     // hotel.users = sampleData.users;
     // hotel.bookings = sampleData.bookings;
@@ -63,5 +64,25 @@ describe('Hotel', function() {
     hotel.findRevenueAnyDay("2019/11/20");
     // console.log(hotel.bookings[0].date, hotel.rooms)
     expect(hotel.revenuePerDay).to.equal(835.78);
+  });
+
+  it('Should find rooms available today', function() {
+    hotel.findRoomsAvailableToday(hotel.dateToday)
+    expect(hotel.roomsAvaiableToday).to.deep.equal([ { number: 1,
+    roomType: 'residential suite',
+    bedSize: 'queen',
+    numBeds: 1,
+    costPerNight: 358.4 },
+  { number: 3,
+    roomType: 'single room',
+    bedSize: 'king',
+    numBeds: 1,
+    costPerNight: 491.14 },
+  { number: 4,
+    roomType: 'single room',
+    bedSize: 'queen',
+    numBeds: 1,
+    costPerNight: 429.44 } ]);
+
   })
 });
