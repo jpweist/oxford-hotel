@@ -5,6 +5,7 @@ class Hotel {
       this.rooms = rooms;
       this.dateToday = dateToday;
       this.currentUser;
+      this.numberOfRoomsAvailableToday = 0;
       this.roomsAvailable = [];
       this.roomsAvaiableToday = [];
       this.roomsBookedToday = [];
@@ -59,6 +60,7 @@ class Hotel {
         return acc;
       }, [])
     })
+    this.numberOfRoomsAvailableToday = this.roomsAvaiableToday.length;
     return this.roomsAvaiableToday;
   }
   // we want to find the rooms booked today

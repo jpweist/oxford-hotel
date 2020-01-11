@@ -2,6 +2,7 @@ import $ from 'jquery';
 // import Hotel from './Hotel';
 // import Rooms from './Rooms';
 import dateToday from './index.js'
+
 const domUpdates = {
 
   loadManagerScreen(user) {
@@ -10,6 +11,7 @@ const domUpdates = {
 
     $('.manager-view').toggleClass('hide-class');
     $('.login-page').toggleClass('hide-class');
+
 
   },
 

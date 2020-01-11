@@ -45,14 +45,7 @@ $('.login-button').on( "click", function() { // login manager or customer
 
   if (userName === 'manager' && userpassword === 'overlook2019') {
 
-    domUpdates.loadManagerScreen(userName)
-    manager = new Manager(users, bookings, rooms);
-    manager.findRevenueToday(dateToday);
-    manager.findRoomsAvailableToday(dateToday);
-    manager.findRoomsBookedToday(dateToday)
-    console.log(manager)
-    $('.total-revenue-today').text(` Total Revenue Today $${manager.revenueToday}`)
-
+    makeManager(userName)
 
   }
    if (userName.substring(8, 0) === 'customer' && userpassword === 'overlook2019') {
@@ -64,6 +57,18 @@ $('.login-button').on( "click", function() { // login manager or customer
 
   }
 });
+
+function makeManager(userName) {
+  domUpdates.loadManagerScreen(userName)
+  manager = new Manager(users, bookings, rooms);
+  manager.findRevenueToday(dateToday);
+  manager.findRoomsAvailableToday(dateToday);
+  manager.findRoomsBookedToday(dateToday)
+  manager.findRoomsAvailableToday(dateToday)
+  console.log(manager)
+  $('.total-revenue-today').text(` Total Revenue Today $${manager.revenueToday}`);
+  $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.numberOfRoomsAvailableToday}`)
+}
 
 function getDateToday() {
   let today = new Date();
