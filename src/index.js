@@ -4,6 +4,7 @@ import './css/base.scss';
 import domUpdates from './domUpdates.js'
 import Hotel from './Hotel';
 import Room from './Room';
+import Manager from './Manager';
 
 var hotel, guest, manager, dateToday;
 getDateToday()
@@ -32,7 +33,7 @@ Promise.all([users, rooms, bookings])
     rooms = data[1]
     bookings = data[2]
     hotel = new Hotel(users, bookings, rooms, dateToday);
-    console.log(hotel)
+    // console.log(hotel)
   })
 
 $('.login-button').on( "click", function() { // login manager or customer
@@ -43,9 +44,16 @@ $('.login-button').on( "click", function() { // login manager or customer
 
 
   if (userName === 'manager' && userpassword === 'overlook2019') {
-    hotel = new Hotel();
-    console.log(hotel, userName)
+
     domUpdates.loadManagerScreen(userName)
+    manager = new Manager(users, bookings, rooms);
+    manager.findRevenueToday(dateToday);
+    manager.findRoomsAvailableToday(dateToday);
+    manager.findRoomsBookedToday(dateToday)
+    console.log(manager)
+    $('.total-revenue-today').text(` Total Revenue Today $${manager.revenueToday}`)
+
+
   }
    if (userName.substring(8, 0) === 'customer' && userpassword === 'overlook2019') {
     domUpdates.loadCustomerScreen(parseInt(userName.substring(8, 10)))

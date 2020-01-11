@@ -43,11 +43,11 @@ class Hotel {
     return this.bookings.filter(booking => {
       this.rooms.forEach(room => {
         if (booking.date === day && booking.roomNumber === room.number) {
-          this.revenuePerDay += room.costPerNight;
+          this.revenueToday += room.costPerNight;
         }
       })
     })
-    console.log(this.revenuePerDay)
+    console.log(this.revenueToday)
   }
   findRoomsAvailableToday(today) {
     this.bookings.forEach(booking => {
