@@ -6,11 +6,17 @@ import sampleData from './sample-data';
 
 
 describe('Hotel', function() {
-  let hotel;
+  let hotel, user, bookings, rooms, currentUser;
 
   beforeEach(() => {
-    hotel = new Hotel();
-    hotel.data = sampleData;
+    user = sampleData.users;
+    bookings = sampleData.bookings;
+    rooms = sampleData.rooms;
+    hotel = new Hotel(user, bookings, rooms);
+    // hotel.data = sampleData;
+    // hotel.users = sampleData.users;
+    // hotel.bookings = sampleData.bookings;
+    // hotel.rooms = sampleData.rooms;
   });
 
   it('Should be an Instance of Hotel', function() {
@@ -18,7 +24,8 @@ describe('Hotel', function() {
   });
 
   it('Should hold the data for users names', function() {
-    expect(hotel.data.users).to.deep.equal([
+    // console.log(hotel)
+    expect(hotel.users).to.deep.equal([
       {id: 1, name: 'Leatha Ullrich'},
       {id: 2, name: 'Rocio Schuster'}
     ]);
@@ -26,7 +33,7 @@ describe('Hotel', function() {
 
   it('Should get a user by id', function() {
     // console.log(hotel.data.users[0].id)
-    hotel.findUserById(1);
+    // hotel.findUserById(1);
     expect(hotel.findUserById(1)).to.deep.equal(
       [{id: 1, name: 'Leatha Ullrich'}]);
   })
@@ -54,15 +61,7 @@ describe('Hotel', function() {
 
   it('Should find revenue for any given day', function() {
     hotel.findRevenueAnyDay("2019/11/20");
-    expect(hotel.findRevenueAnyDay("2019/11/20")).to.deep.equal([
-      { id: 1572293130170,
-        userID: 1,
-        date: '2019/11/20',
-        roomNumber: 1 },
-      { id: 1572293130171,
-        userID: 2,
-        date: '2019/11/20',
-        roomNumber: 2 }
-    ]);
+    // console.log(hotel.bookings[0].date, hotel.rooms)
+    expect(hotel.revenuePerDay).to.equal(835.78);
   })
 });

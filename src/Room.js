@@ -6,7 +6,7 @@ class Room extends Hotel {
 
   }
   findOccupiedRoomsByDay(day) {
-    console.log(this.data, day)
+    // console.log(this.data, day)
 
   }
 }

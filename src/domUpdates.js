@@ -1,14 +1,17 @@
 import $ from 'jquery';
+// import Hotel from './Hotel';
+// import Rooms from './Rooms';
 
 const domUpdates = {
 
   loadManagerScreen(user) {
     window.location = '/manager.html';
+
   },
 
-  loadCustomerScreen(user) {
+  loadCustomerScreen(userID) {
     window.location = '/customer.html'
-    console.log(user)
+    console.log('User Id: ', userID)
   }
 
 }
