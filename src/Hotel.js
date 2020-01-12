@@ -5,7 +5,8 @@ class Hotel {
       this.rooms = rooms;
       this.dateToday = dateToday;
       this.currentUser;
-      this.numberOfRoomsAvailableToday = 0;
+      this.searchedUser;
+      this.percentOfRoomsAvailableToday = 0; // we want the % instead
       this.roomsAvailable = [];
       this.roomsAvaiableToday = [];
       this.roomsBookedToday = [];
@@ -19,8 +20,16 @@ class Hotel {
   findUserById(id) {
     return this.users.filter(user => user.id === id)
   }
-  findUserByName(name) {
-    return this.users.filter(user => user.name === name)
+  findUserByName(name) { // left off here was working on searching for name
+    // may need to rework
+    return this.users.filter(user => {
+      if (user.name === name) {
+        this.bookings.forEach(booking => {
+          if (booking.userId === user.id) {
+            console.log(booking)
+          }
+        })
+      }})
   }
   findBookingsByDay(day) {
     this.bookingsByDate = [];
@@ -50,7 +59,7 @@ class Hotel {
     })
     console.log(this.revenueToday)
   }
-  findRoomsAvailableToday(today) {
+  findPercentOfRoomsAvailableToday(today) {
     this.bookings.forEach(booking => {
       this.rooms.reduce((acc, room) => {
         if (booking.roomNumber !== room.number) {
@@ -60,7 +69,6 @@ class Hotel {
         return acc;
       }, [])
     })
-    this.numberOfRoomsAvailableToday = this.roomsAvaiableToday.length;
     return this.roomsAvaiableToday;
   }
   // we want to find the rooms booked today
@@ -74,6 +82,8 @@ class Hotel {
         return acc;
       }, [])
     })
+    this.percentOfRoomsAvailableToday = (this.roomsBookedToday.length * this.rooms.length);
+    console.log(this.percentOfRoomsAvailableToday)
     return this.roomsBookedToday;
   }
   findAvailableRoomsByDate(day) {

@@ -62,17 +62,21 @@ function makeManager(userName) {
   domUpdates.loadManagerScreen(userName)
   manager = new Manager(users, bookings, rooms);
   manager.findRevenueToday(dateToday);
-  manager.findRoomsAvailableToday(dateToday);
+  // manager.findRoomsAvailableToday(dateToday);
   manager.findRoomsBookedToday(dateToday)
-  manager.findRoomsAvailableToday(dateToday)
+  // manager.findRoomsAvailableToday(dateToday);
+  // manager.findRoomsBookedToday(dateToday);
   console.log(manager)
+  console.log(manager.users[0].name)
   $('.total-revenue-today').text(` Total Revenue Today $${manager.revenueToday}`);
-  $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.numberOfRoomsAvailableToday}`)
+  $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.percentOfRoomsAvailableToday}%`)
 }
 
 $('.search-name-button').on( "click", function() {
   let user = $('.search-name-value').val();
   console.log(user);
+  manager.findUserByName(user);
+  console.log(manager.searchedUser)
 
 })
 
