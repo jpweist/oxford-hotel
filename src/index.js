@@ -68,6 +68,7 @@ function makeManager(userName) {
   // manager.findRoomsBookedToday(dateToday);
   console.log(manager)
   console.log(manager.users[0].name)
+  console.log(manager.users[10].name)
   $('.total-revenue-today').text(` Total Revenue Today $${manager.revenueToday}`);
   $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.percentOfRoomsAvailableToday}%`)
 }
@@ -76,6 +77,9 @@ $('.search-name-button').on( "click", function() {
   let user = $('.search-name-value').val();
   console.log(user);
   manager.findUserByName(user);
+  manager.findUserBookings();
+  manager.findRoomsBookedByUser();
+  manager.findTotalSpendByUser();
   console.log(manager.searchedUser)
 
 })

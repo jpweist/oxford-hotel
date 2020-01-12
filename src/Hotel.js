@@ -5,7 +5,7 @@ class Hotel {
       this.rooms = rooms;
       this.dateToday = dateToday;
       this.currentUser;
-      this.searchedUser = { user: [], bookings: [], rooms: [], totalSpent: 0};
+      this.searchedUser = { userID: 0, name: '', bookings: [], rooms: [], totalSpent: 0};
       this.percentOfRoomsAvailableToday = 0; // we want the % instead
       this.roomsAvailable = [];
       this.roomsAvaiableToday = [];
@@ -19,6 +19,7 @@ class Hotel {
 
   findUserById(id) {
     let serchedById;
+    console.log(user)
     serchedById = this.users.filter(user => user.id === id)
     // console.log(serchedById, this.searchedUser)
     this.searchedUser.user.push(serchedById)
@@ -30,32 +31,25 @@ class Hotel {
 
       if (user.name === name ) {
         // console.log(user)
-        this.searchedUser.user.push(user)
+        this.searchedUser.userID = user.id;
+        this.searchedUser.name = name;
         // console.log(this.searchedUser)
+      }
+    })
 
-        this.bookings.forEach(booking => {
-          if (booking.userID === user.id) {
-            // console.log('Booking: ', booking.userID, 'User Id: ', user.id)
-            this.searchedUser.bookings.push(booking)
-          }
-        this.rooms.forEach(room => {
-          if (room.number === booking.roomNumber) {
-            // console.log('Room $: ', room.costPerNight)
-            totalCost += room.costPerNight
-            // console.log(totalCost)
-            this.searchedUser.rooms.push(room)
-            this.searchedUser.totalSpent = totalCost;
-            // console.log(this.searchedUser.rooms)
-          }
-        })
-        })
+    }
+  findUserBookings() {
+    this.bookings.forEach(booking => {
+      // console.log(booking.userID, this.searchedUser.userID)
+      if (booking.userID === this.searchedUser.userID) {
+        // console.log(booking.userID, this.searchedUser.userID)
+        this.searchedUser.bookings.push(booking)
 
       }
-      // console.log('User: ', this.searchedUser.user, 'Bookings: ', this.searchedUser.bookings[0])
-      console.log('Rooms: ', this.searchedUser.rooms[0].costPerNight, 'totalSpent: ', this.searchedUser.totalSpent)
-
     })
-    // console.log(this.searchedUser.totalCost)
+
+    // console.log(this.searchedUser)
+
   }
   findBookingsByDay(day) {
     this.bookingsByDate = [];
@@ -75,15 +69,35 @@ class Hotel {
       })
     })
   }
-  findTotalSpentByUser() {
+  findRoomsBookedByUser() {
+    this.rooms.forEach(room => {
+      // console.log(room.number, this.searchedUser.bookings.roomNumber)
+      this.searchedUser.bookings.forEach(booking => {
+        // console.log(room.number, booking.roomNumber)
+        if (room.number === booking.roomNumber) {
+          // console.log(room.number, booking.roomNumber)
+          this.searchedUser.rooms.push(room)
+          // console.log(this.searchedUser.rooms)
+        }
+      })
 
+    })
 
+  }
+  findTotalSpendByUser() {
+    let totalSpentUser = 0;
+    this.searchedUser.rooms.forEach(room => {
+      // console.log(room.costPerNight)
+      totalSpentUser += room.costPerNight;
+    })
+    this.searchedUser.totalSpent = totalSpentUser;
+    console.log(this.searchedUser.totalSpent)
   }
   findRevenueToday(day) {
     return this.bookings.filter(booking => {
       this.rooms.forEach(room => {
         if (booking.date === day && booking.roomNumber === room.number) {
-          this.revenueToday += room.costPerNight;
+          this.revenueToday += Math.floor(room.costPerNight);
         }
       })
     })

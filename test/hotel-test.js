@@ -41,6 +41,7 @@ describe('Hotel', () => {
 
   it('Should find user by name', () => {
     hotel.findUserByName('Leatha Ullrich');
+    hotel.findUserBookings();
     expect(hotel.searchedUser.user).to.deep.equal(
       [ { id: 1, name: 'Leatha Ullrich' } ])
   })
