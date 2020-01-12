@@ -34,15 +34,15 @@ describe('Hotel', () => {
 
   it('Should get a user by id', () => {
     // console.log(hotel.data.users[0].id)
-    // hotel.findUserById(1);
-    expect(hotel.findUserById(1)).to.deep.equal(
-      [{id: 1, name: 'Leatha Ullrich'}]);
+    hotel.findUserById(1);
+    expect(hotel.searchedUser.user).to.deep.equal(
+      [ [ { id: 1, name: 'Leatha Ullrich' } ] ]);
   })
 
   it('Should find user by name', () => {
     hotel.findUserByName('Leatha Ullrich');
-    expect(hotel.findUserByName('Leatha Ullrich')).to.deep.equal(
-      [{id: 1, name: 'Leatha Ullrich'}])
+    expect(hotel.searchedUser.user).to.deep.equal(
+      [ { id: 1, name: 'Leatha Ullrich' } ])
   })
 
   it('Should find bookings for any given day', () => {
@@ -66,7 +66,7 @@ describe('Hotel', () => {
     expect(hotel.revenuePerDay).to.equal(835.78);
   });
 
-  it('Should find rooms available today', () => {
+  it.skip('Should find rooms available today', () => {
     hotel.findRoomsAvailableToday(hotel.dateToday)
     expect(hotel.roomsAvaiableToday).to.deep.equal([ { number: 1,
     roomType: 'residential suite',
@@ -98,6 +98,14 @@ describe('Hotel', () => {
   it('Should find revenue for Today', () => {
     hotel.findRevenueToday("2019/11/20");
     expect(hotel.revenuePerDay).to.equal(835.78);
+  })
+
+  it('Should have method to get the rooms/Money the user booked', () => {
+    hotel.findUserByName('Leatha Ullrich');
+    // console.log(hotel.rooms)
+    hotel.findTotalSpentByUser('Leatha Ullrich').to.equal();
+
+
   })
 
   it.skip('Should have a method to Book A Room', () => {

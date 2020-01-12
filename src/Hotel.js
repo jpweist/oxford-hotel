@@ -5,7 +5,7 @@ class Hotel {
       this.rooms = rooms;
       this.dateToday = dateToday;
       this.currentUser;
-      this.searchedUser;
+      this.searchedUser = { user: [], bookings: [], rooms: [], totalSpent: 0};
       this.percentOfRoomsAvailableToday = 0; // we want the % instead
       this.roomsAvailable = [];
       this.roomsAvaiableToday = [];
@@ -18,18 +18,44 @@ class Hotel {
     }
 
   findUserById(id) {
-    return this.users.filter(user => user.id === id)
+    let serchedById;
+    serchedById = this.users.filter(user => user.id === id)
+    // console.log(serchedById, this.searchedUser)
+    this.searchedUser.user.push(serchedById)
+    // console.log(this.searchedUser.user)
   }
-  findUserByName(name) { // left off here was working on searching for name
-    // may need to rework
+  findUserByName(name) {
+    let totalCost = 0;
     return this.users.filter(user => {
-      if (user.name === name) {
+
+      if (user.name === name ) {
+        // console.log(user)
+        this.searchedUser.user.push(user)
+        // console.log(this.searchedUser)
+
         this.bookings.forEach(booking => {
-          if (booking.userId === user.id) {
-            console.log(booking)
+          if (booking.userID === user.id) {
+            // console.log('Booking: ', booking.userID, 'User Id: ', user.id)
+            this.searchedUser.bookings.push(booking)
+          }
+        this.rooms.forEach(room => {
+          if (room.number === booking.roomNumber) {
+            // console.log('Room $: ', room.costPerNight)
+            totalCost += room.costPerNight
+            // console.log(totalCost)
+            this.searchedUser.rooms.push(room)
+            this.searchedUser.totalSpent = totalCost;
+            // console.log(this.searchedUser.rooms)
           }
         })
-      }})
+        })
+
+      }
+      // console.log('User: ', this.searchedUser.user, 'Bookings: ', this.searchedUser.bookings[0])
+      console.log('Rooms: ', this.searchedUser.rooms[0].costPerNight, 'totalSpent: ', this.searchedUser.totalSpent)
+
+    })
+    // console.log(this.searchedUser.totalCost)
   }
   findBookingsByDay(day) {
     this.bookingsByDate = [];
@@ -49,6 +75,10 @@ class Hotel {
       })
     })
   }
+  findTotalSpentByUser() {
+
+
+  }
   findRevenueToday(day) {
     return this.bookings.filter(booking => {
       this.rooms.forEach(room => {
@@ -57,7 +87,7 @@ class Hotel {
         }
       })
     })
-    console.log(this.revenueToday)
+    // console.log(this.revenueToday)
   }
   findPercentOfRoomsAvailableToday(today) {
     this.bookings.forEach(booking => {
@@ -83,7 +113,7 @@ class Hotel {
       }, [])
     })
     this.percentOfRoomsAvailableToday = (this.roomsBookedToday.length * this.rooms.length);
-    console.log(this.percentOfRoomsAvailableToday)
+    // console.log(this.percentOfRoomsAvailableToday)
     return this.roomsBookedToday;
   }
   findAvailableRoomsByDate(day) {
