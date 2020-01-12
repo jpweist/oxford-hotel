@@ -19,11 +19,11 @@ class Hotel {
 
   findUserById(id) {
     let serchedById;
-    console.log(user)
     serchedById = this.users.filter(user => user.id === id)
-    // console.log(serchedById, this.searchedUser)
-    this.searchedUser.user.push(serchedById)
-    // console.log(this.searchedUser.user)
+    // console.log(serchedById[0].id, serchedById[0].name)
+    this.searchedUser.userID = serchedById[0].id;
+    this.searchedUser.name = serchedById[0].name;
+    // console.log(this.searchedUser.userID, this.searchedUser.name)
   }
   findUserByName(name) {
     let totalCost = 0;
