@@ -37,7 +37,7 @@ Promise.all([users, rooms, bookings])
     console.log(hotel)
   })
 
-$('.login-button').on( "click", function() { // login manager or customer
+$('.login-button').on( "click", () => { // login manager or customer
   let hotel;
   let userName = $('.user-login').val();
   let userpassword = $('.password').val();
@@ -82,8 +82,12 @@ function makeUser(userName) {
   user.findUserBookings();
   user.findRoomsBookedByUser();
   console.log(user)
+  $('.user-welcome').html(`<h1 class="user-welcome">Welcome ${ user.searchedUser.name } to Oxford Hotel Customer Bookings</h1>`);
+  $('.user-total-spent').html(`<p class="user-total-spent">Total Spent On Rooms: $${ user.searchedUser.totalSpent }</p>`);
+
+
 }
-$('.search-name-button').on( "click", function() {
+$('.search-name-button').on( "click", () => {
   let user = $('.search-name-value').val();
   console.log(user);
   manager.findUserByName(user);
@@ -94,7 +98,13 @@ $('.search-name-button').on( "click", function() {
 
 })
 
+$('.search-by-date-button').on( "click", () => {
+  let date = $('.search-by-date-value').val()
+  console.log(date)
+  user.findAvailableRoomsByDate(date);
+  console.log(user.roomsAvaiableByDate)
 
+})
 
 
 

@@ -1,7 +1,11 @@
 import $ from 'jquery';
-// import Hotel from './Hotel';
+import Hotel from './Hotel';
 // import Rooms from './Rooms';
 import dateToday from './index.js'
+import user from './index.js';
+import manager from './index.js';
+import hotel from './index.js';
+
 
 const domUpdates = {
 
@@ -20,6 +24,7 @@ const domUpdates = {
     // console.log('User Id: ', userID)
     $('.customer-page').toggleClass('hide-class');
     $('.login-page').toggleClass('hide-class');
+
   }
 
 }
