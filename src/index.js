@@ -4,8 +4,10 @@ import './css/base.scss';
 import domUpdates from './domUpdates.js'
 import Hotel from './Hotel';
 import Room from './Room';
+import Manager from './Manager';
+import User from './User';
 
-var hotel, guest, manager, dateToday;
+var hotel, guest, manager, dateToday, user;
 getDateToday()
 
 let users =
@@ -35,7 +37,25 @@ Promise.all([users, rooms, bookings])
     console.log(hotel)
   })
 
-$('.login-button').on( "click", function() { // login manager or customer
+
+  function getDateToday() {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    let yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = '0' + dd;
+    }
+    if (mm < 10) {
+      mm = '0' + mm;
+    }
+    dateToday = `${yyyy}/${mm}/${dd}`;
+    // console.log(dateToday)
+    return dateToday;
+  }
+
+
+$('.login-button').on( "click", () => { // login manager or customer
   let hotel;
   let userName = $('.user-login').val();
   let userpassword = $('.password').val();
@@ -43,32 +63,72 @@ $('.login-button').on( "click", function() { // login manager or customer
 
 
   if (userName === 'manager' && userpassword === 'overlook2019') {
-    hotel = new Hotel();
-    console.log(hotel, userName)
-    domUpdates.loadManagerScreen(userName)
+    makeManager(userName)
   }
    if (userName.substring(8, 0) === 'customer' && userpassword === 'overlook2019') {
-    domUpdates.loadCustomerScreen(parseInt(userName.substring(8, 10)))
+    makeUser(userName)
+    // domUpdates.loadCustomerScreen(parseInt(userName.substring(8, 10)))
+    domUpdates.loadCustomerScreen(user);
   }
   if (userName !== 'manager' && userpassword !== 'overlook2019' || justName !== 'customer' && userpassword !== 'overlook2019') {
-    $('.user-login').addClass('error')
-    $('.password').addClass('error')
+    domUpdates.error()
+    // $('.user-login').addClass('error')
+    // $('.password').addClass('error')
 
   }
 });
 
-function getDateToday() {
-  let today = new Date();
-  let dd = today.getDate();
-  let mm = today.getMonth() + 1;
-  let yyyy = today.getFullYear();
-  if (dd < 10) {
-    dd = '0' + dd;
-  }
-  if (mm < 10) {
-    mm = '0' + mm;
-  }
-  dateToday = `${yyyy}/${mm}/${dd}`;
-  console.log(dateToday)
-  return dateToday;
+function makeManager(userName) {
+  manager = new Manager(users, bookings, rooms, dateToday);
+  console.log(manager, dateToday)
+
+  manager.findBookingsToday(dateToday)
+  manager.findRevenueAnyDay(dateToday)
+  manager.findPercentBookedToday()
+  // console.log(manager.revenueToday)
+
+  // manager.findRevenueToday(dateToday); // move to manager from hotel
+  // manager.findRoomsAvailableToday(dateToday);
+  // manager.findRoomsAvailableToday(dateToday);
+  // manager.findRoomsBookedToday(dateToday);
+  console.log(manager.users[0].name)
+  console.log(manager.users[10].name)
+  // $('.total-revenue-today').text(` Total Revenue Today $${manager.revenueToday}`);
+  // $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.percentOfRoomsAvailableToday}%`)
+  domUpdates.loadManagerScreen(manager, dateToday)
 }
+
+function makeUser(userName) {
+  let userNum;
+  userNum = userName.slice(-2);
+  // console.log(userNum)
+  user = new User(users, bookings, rooms, dateToday, userNum);
+  user.findUserById(userNum);
+  user.findUserBookings();
+  user.findRoomsBookedByUser();
+  console.log(user)
+  // $('.user-welcome').html(`<h1 class="user-welcome">Welcome ${ user.searchedUser.name } to Oxford Hotel Customer Bookings</h1>`);
+  // $('.user-total-spent').html(`<p class="user-total-spent">Total Spent On Rooms: $${ user.searchedUser.totalSpent }</p>`);
+
+
+}
+$('.search-name-button').on( "click", () => {
+  let user = $('.search-name-value').val();
+  // console.log(user);
+  manager.findUserByName(user);
+  manager.findUserBookings();
+  manager.findRoomsBookedByUser();
+  manager.findTotalSpendByUser();
+  manager.findBookingsToday(dateToday);
+  console.log(manager.searchedUser)
+
+})
+
+$('.search-by-date-button').on( "click", () => {
+  let date = $('.search-by-date-value').val()
+  // console.log(date)
+  user.findAvailableRoomsByDate(date);
+  // console.log(user.roomsAvaiableByDate);
+  $('.search-results').append(`${user.roomsAvaiableByDate[0].costPerNight}, ${user.roomsAvaiableByDate[0].roomType}, ${user.roomsAvaiableByDate[0].bedSize} , ${user.roomsAvaiableByDate[0].numBeds}`)
+
+})
