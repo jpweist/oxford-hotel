@@ -1,9 +1,12 @@
-import Hotel from './Hotel.js';
+import User from './User.js';
 
 
-class Manager extends Hotel {
-  constructor(user, bookings, rooms) {
-    super(user, bookings, rooms)
+class Manager extends User {
+  constructor(users, bookings, rooms, dateToday) {
+    super(users, bookings, rooms, dateToday)
+  }
+  delete() {
+
   }
 }
 

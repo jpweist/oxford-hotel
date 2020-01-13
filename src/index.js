@@ -5,8 +5,9 @@ import domUpdates from './domUpdates.js'
 import Hotel from './Hotel';
 import Room from './Room';
 import Manager from './Manager';
+import User from './User';
 
-var hotel, guest, manager, dateToday;
+var hotel, guest, manager, dateToday, user;
 getDateToday()
 
 let users =
@@ -33,7 +34,7 @@ Promise.all([users, rooms, bookings])
     rooms = data[1]
     bookings = data[2]
     hotel = new Hotel(users, bookings, rooms, dateToday);
-    // console.log(hotel)
+    console.log(hotel)
   })
 
 $('.login-button').on( "click", function() { // login manager or customer
@@ -44,11 +45,10 @@ $('.login-button').on( "click", function() { // login manager or customer
 
 
   if (userName === 'manager' && userpassword === 'overlook2019') {
-
     makeManager(userName)
-
   }
    if (userName.substring(8, 0) === 'customer' && userpassword === 'overlook2019') {
+    makeUser(userName)
     domUpdates.loadCustomerScreen(parseInt(userName.substring(8, 10)))
   }
   if (userName !== 'manager' && userpassword !== 'overlook2019' || justName !== 'customer' && userpassword !== 'overlook2019') {
@@ -60,7 +60,7 @@ $('.login-button').on( "click", function() { // login manager or customer
 
 function makeManager(userName) {
   domUpdates.loadManagerScreen(userName)
-  manager = new Manager(users, bookings, rooms);
+  manager = new Manager(users, bookings, rooms, dateToday);
   manager.findRevenueToday(dateToday);
   // manager.findRoomsAvailableToday(dateToday);
   manager.findRoomsBookedToday(dateToday)
@@ -73,6 +73,14 @@ function makeManager(userName) {
   $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.percentOfRoomsAvailableToday}%`)
 }
 
+function makeUser(userName) {
+  let userNum;
+  userNum = userName.slice(-2);
+  // console.log(userNum)
+  user = new User(users, bookings, rooms, dateToday, userNum);
+  user.findUserById(userNum);
+  console.log(user)
+}
 $('.search-name-button').on( "click", function() {
   let user = $('.search-name-value').val();
   console.log(user);
