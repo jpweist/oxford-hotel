@@ -45,4 +45,10 @@ describe('Manager', () => {
   costPerNight: 477.38 }]);
   })
 
+  it('should have a method to find revenue for the day', () => {
+    manager.findBookingsToday(dateToday);
+    manager.findRevenueAnyDay(dateToday);
+    expect(manager.revenueToday).to.equal(835);
+  });
+
 });

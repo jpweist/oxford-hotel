@@ -4,6 +4,9 @@ class Manager extends User {
   constructor(users, bookings, rooms, dateToday) {
     super(users, bookings, rooms, dateToday)
     this.roomsBookedToday;
+    this.bookingsForTheDay;
+    this.revenueToday = 0;
+
 
   }
   findUserByName(name) {
@@ -20,14 +23,16 @@ class Manager extends User {
 
     }
     findBookingsToday(day) {
+      // console.log('day', day)
       this.roomsBookedToday = [];
+      this.bookingsForTheDay = [];
        return this.bookings.forEach(booking => {
          // console.log(booking);
          this.rooms.forEach(room => {
            // console.log(room)
            if (booking.date === day && booking.roomNumber === room.number ) {
-             // console.log(room);
-
+             // console.log(booking);
+             this.bookingsForTheDay.push(booking)
              this.roomsBookedToday.push(room);
 
            }
@@ -37,6 +42,17 @@ class Manager extends User {
 
       })
       // console.log(this.roomsBookedToday)
+    }
+
+    findRevenueAnyDay(day) {         //Should find revenue for any given day
+      this.roomsBookedToday.forEach(room => {
+          // console.log(room.costPerNight)
+          this.revenueToday += room.costPerNight;
+          // console.log(totalRevenuePerDay)
+          this.revenueToday = Math.floor(this.revenueToday)
+        })
+        return this.revenueToday;
+      // console.log(this.revenueToday)
     }
 
 
