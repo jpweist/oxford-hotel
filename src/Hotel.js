@@ -24,19 +24,19 @@ class Hotel {
   //   this.searchedUser.name = serchedById[0].name;
   //   // console.log(this.searchedUser.userID, this.searchedUser.name)
   // }
-  findUserByName(name) {
-    let totalCost = 0;
-    return this.users.filter(user => {
-
-      if (user.name === name ) {
-        // console.log(user)
-        this.searchedUser.userID = user.id;
-        this.searchedUser.name = name;
-        // console.log(this.searchedUser)
-      }
-    })
-
-    }
+  // findUserByName(name) {
+  //   let totalCost = 0;
+  //   return this.users.filter(user => {
+  //
+  //     if (user.name === name ) {
+  //       // console.log(user)
+  //       this.searchedUser.userID = user.id;
+  //       this.searchedUser.name = name;
+  //       // console.log(this.searchedUser)
+  //     }
+  //   })
+  //
+  //   }
   // findUserBookings() {
   //   this.bookings.forEach(booking => {
   //     // console.log(booking.userID, this.searchedUser.userID)
