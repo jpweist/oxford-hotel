@@ -61,7 +61,7 @@ $('.login-button').on( "click", () => { // login manager or customer
 function makeManager(userName) {
   domUpdates.loadManagerScreen(userName)
   manager = new Manager(users, bookings, rooms, dateToday);
-  manager.findRevenueToday(dateToday);
+  // manager.findRevenueToday(dateToday); // move to manager from hotel
   // manager.findRoomsAvailableToday(dateToday);
   manager.findRoomsBookedToday(dateToday)
   // manager.findRoomsAvailableToday(dateToday);
@@ -94,6 +94,7 @@ $('.search-name-button').on( "click", () => {
   manager.findUserBookings();
   manager.findRoomsBookedByUser();
   manager.findTotalSpendByUser();
+  manager.findBookingsToday(dateToday);
   console.log(manager.searchedUser)
 
 })

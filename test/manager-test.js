@@ -32,4 +32,17 @@ describe('Manager', () => {
 
   });
 
+  it('should have a method to find the bookings for today', () => {
+    manager.findBookingsToday(dateToday);
+    expect(manager.roomsBookedToday).to.deep.equal([{ number: 1,
+  roomType: 'residential suite',
+  bedSize: 'queen',
+  numBeds: 1,
+  costPerNight: 358.4 }, { number: 2,
+  roomType: 'suite',
+  bedSize: 'full',
+  numBeds: 2,
+  costPerNight: 477.38 }]);
+  })
+
 });

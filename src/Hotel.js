@@ -24,19 +24,19 @@ class Hotel {
   //   this.searchedUser.name = serchedById[0].name;
   //   // console.log(this.searchedUser.userID, this.searchedUser.name)
   // }
-  // findUserByName(name) {
-  //   let totalCost = 0;
-  //   return this.users.filter(user => {
-  //
-  //     if (user.name === name ) {
-  //       // console.log(user)
-  //       this.searchedUser.userID = user.id;
-  //       this.searchedUser.name = name;
-  //       // console.log(this.searchedUser)
-  //     }
-  //   })
-  //
-  //   }
+  findUserByName(name) {
+    let totalCost = 0;
+    return this.users.filter(user => {
+
+      if (user.name === name ) {
+        // console.log(user)
+        this.searchedUser.userID = user.id;
+        this.searchedUser.name = name;
+        // console.log(this.searchedUser)
+      }
+    })
+
+    }
   // findUserBookings() {
   //   this.bookings.forEach(booking => {
   //     // console.log(booking.userID, this.searchedUser.userID)
@@ -66,21 +66,21 @@ class Hotel {
     this.revenueToday = totalRevenuePerDay
     // console.log(this.revenueToday)
   }
-  // findRoomsBookedByUser() {
-  //   this.rooms.forEach(room => {
-  //     // console.log(room.number, this.searchedUser.bookings.roomNumber)
-  //     this.searchedUser.bookings.forEach(booking => {
-  //       // console.log(room.number, booking.roomNumber)
-  //       if (room.number === booking.roomNumber) {
-  //         // console.log(room.number, booking.roomNumber)
-  //         this.searchedUser.rooms.push(room)
-  //         // console.log(this.searchedUser.rooms)
-  //       }
-  //     })
-  //
-  //   })
-  //
-  // }
+  findRoomsBookedByUser() {
+    this.rooms.forEach(room => {
+      // console.log(room.number, this.searchedUser.bookings.roomNumber)
+      this.searchedUser.bookings.forEach(booking => {
+        // console.log(room.number, booking.roomNumber)
+        if (room.number === booking.roomNumber) {
+          // console.log(room.number, booking.roomNumber)
+          this.searchedUser.rooms.push(room)
+          // console.log(this.searchedUser.rooms)
+        }
+      })
+
+    })
+
+  }
   findTotalSpendByUser() {
     let totalSpentUser = 0;
     this.searchedUser.rooms.forEach(room => {
