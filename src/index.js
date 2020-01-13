@@ -79,6 +79,7 @@ function makeUser(userName) {
   // console.log(userNum)
   user = new User(users, bookings, rooms, dateToday, userNum);
   user.findUserById(userNum);
+  user.findUserBookings();
   console.log(user)
 }
 $('.search-name-button').on( "click", function() {

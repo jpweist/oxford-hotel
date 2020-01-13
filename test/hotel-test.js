@@ -32,7 +32,7 @@ describe('Hotel', () => {
     ]);
   });
 
-  it('Should get a user by id', () => {
+  it.skip('Should get a user by id', () => {
     // console.log(hotel.data.users[0].id)
     hotel.findUserById(1);
     expect(hotel.searchedUser.userID).to.deep.equal(1);
@@ -40,7 +40,7 @@ describe('Hotel', () => {
 
   })
 
-  it('Should find user by name', () => {
+  it.skip('Should find user by name', () => {
     hotel.findUserByName('Leatha Ullrich');
     hotel.findUserBookings();
     expect(hotel.searchedUser.userID).to.deep.equal(1);
@@ -48,7 +48,7 @@ describe('Hotel', () => {
 
   })
 
-  it('Should find bookings for any given day', () => {
+  it.skip('Should find bookings for any given day', () => {
     hotel.findBookingsByDay("2019/11/20");
     expect(hotel.findBookingsByDay("2019/11/20")).to.deep.equal([{
       id: 1572293130170,
@@ -89,7 +89,7 @@ describe('Hotel', () => {
 
   });
 
-  it('Should have a method to find rooms booked today', () => {
+  it.skip('Should have a method to find rooms booked today', () => {
     hotel.findRoomsBookedToday("2019/11/01")
     expect(hotel.roomsBookedToday).to.deep.equal([ { number: 2,
     roomType: 'suite',
