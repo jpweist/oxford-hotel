@@ -44,4 +44,36 @@ describe('User Class Tests', function() {
        roomNumber: 1 } ] })
   });
 
+  it('Should have a method to find rooms booked by user', () => {
+    user.findUserById(1);
+    user.findUserBookings()
+    user.findRoomsBookedByUser();
+    expect(user.searchedUser.rooms).to.deep.equal([ { number: 1,
+    roomType: 'residential suite',
+    bedSize: 'queen',
+    numBeds: 1,
+    costPerNight: 358.4 } ]);
+  });
+
+  it('should have a method to find Available Rooms By Date', () => {
+    user.findUserById(1);
+    user.findUserBookings();
+    user.findAvailableRoomsByDate("2019/11/20");
+    expect(user.roomsAvaiableByDate).to.deep.equal([ { number: 1,
+    roomType: 'residential suite',
+    bedSize: 'queen',
+    numBeds: 1,
+    costPerNight: 358.4 },
+  { number: 3,
+    roomType: 'single room',
+    bedSize: 'king',
+    numBeds: 1,
+    costPerNight: 491.14 },
+  { number: 4,
+    roomType: 'single room',
+    bedSize: 'queen',
+    numBeds: 1,
+    costPerNight: 429.44 } ])
+  })
+
 });

@@ -66,21 +66,21 @@ class Hotel {
     this.revenueToday = totalRevenuePerDay
     // console.log(this.revenueToday)
   }
-  findRoomsBookedByUser() {
-    this.rooms.forEach(room => {
-      // console.log(room.number, this.searchedUser.bookings.roomNumber)
-      this.searchedUser.bookings.forEach(booking => {
-        // console.log(room.number, booking.roomNumber)
-        if (room.number === booking.roomNumber) {
-          // console.log(room.number, booking.roomNumber)
-          this.searchedUser.rooms.push(room)
-          // console.log(this.searchedUser.rooms)
-        }
-      })
-
-    })
-
-  }
+  // findRoomsBookedByUser() {
+  //   this.rooms.forEach(room => {
+  //     // console.log(room.number, this.searchedUser.bookings.roomNumber)
+  //     this.searchedUser.bookings.forEach(booking => {
+  //       // console.log(room.number, booking.roomNumber)
+  //       if (room.number === booking.roomNumber) {
+  //         // console.log(room.number, booking.roomNumber)
+  //         this.searchedUser.rooms.push(room)
+  //         // console.log(this.searchedUser.rooms)
+  //       }
+  //     })
+  //
+  //   })
+  //
+  // }
   findTotalSpendByUser() {
     let totalSpentUser = 0;
     this.searchedUser.rooms.forEach(room => {
