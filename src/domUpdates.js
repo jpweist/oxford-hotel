@@ -1,21 +1,18 @@
 import $ from 'jquery';
-import Hotel from './Hotel';
-// import Rooms from './Rooms';
-// import dateToday from './index.js'
-import user from './index.js';
-import manager from './index.js';
-import hotel from './index.js';
+
 
 
 const domUpdates = {
 
-  loadManagerScreen(manager, dateToday) {
+  loadManagerScreen(manager) {
     // window.location = '/manager.html';
-    console.log(dateToday, manager)
+    // console.log(dateToday, manager)
     $('.manager-view').toggleClass('hide-class');
     $('.login-page').toggleClass('hide-class');
-    $('.total-revenue-today').text(` Total Revenue Today $${manager.revenueToday}`);
-    $('.percent-full-today').text(` Percent Occupied Today ${manager.percentOfRoomsAvailableToday}%`)
+    $('.total-revenue-today')
+    .text(` Total Revenue Today $${manager.revenueToday}`);
+    $('.percent-full-today')
+    .text(` Percent Occupied Today ${manager.percentOfRoomsAvailableToday}%`)
     $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.numberOfRoomsAvaiableToday}`)
 
 
