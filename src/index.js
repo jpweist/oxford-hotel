@@ -84,6 +84,7 @@ function makeManager(userName) {
 
   manager.findBookingsToday(dateToday)
   manager.findRevenueAnyDay(dateToday)
+  manager.findPercentBookedToday()
   // console.log(manager.revenueToday)
 
   // manager.findRevenueToday(dateToday); // move to manager from hotel
@@ -125,9 +126,9 @@ $('.search-name-button').on( "click", () => {
 
 $('.search-by-date-button').on( "click", () => {
   let date = $('.search-by-date-value').val()
-  console.log(date)
+  // console.log(date)
   user.findAvailableRoomsByDate(date);
-  console.log(user.roomsAvaiableByDate);
+  // console.log(user.roomsAvaiableByDate);
   $('.search-results').append(`${user.roomsAvaiableByDate[0].costPerNight}, ${user.roomsAvaiableByDate[0].roomType}, ${user.roomsAvaiableByDate[0].bedSize} , ${user.roomsAvaiableByDate[0].numBeds}`)
 
 })

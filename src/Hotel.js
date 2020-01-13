@@ -111,24 +111,24 @@ class Hotel {
   }
   // Should find bookings for any given day
 
-  findRoomsBookedToday(date) {
-    // console.log(date)
-    this.bookings.forEach(booking => {
-      // console.log(booking.date, date)
-    if (booking.date === date) {
-    }
-      this.rooms.reduce((acc, room) => {
-        // console.log(booking.date, date)
-          acc.push(room);
-
-        return acc;
-      }, [])
-    })
-    // this.percentOfRoomsAvailableToday = (this.roomsBookedToday.length * this.rooms.length);
-    // // console.log(this.percentOfRoomsAvailableToday)
-    // return this.roomsBookedToday;
-
-  }
+  // findRoomsBookedToday(date) {
+  //   // console.log(date)
+  //   this.bookings.forEach(booking => {
+  //     // console.log(booking.date, date)
+  //   if (booking.date === date) {
+  //   }
+  //     this.rooms.reduce((acc, room) => {
+  //       // console.log(booking.date, date)
+  //         acc.push(room);
+  //
+  //       return acc;
+  //     }, [])
+  //   })
+  //   // this.percentOfRoomsAvailableToday = (this.roomsBookedToday.length * this.rooms.length);
+  //   // // console.log(this.percentOfRoomsAvailableToday)
+  //   // return this.roomsBookedToday;
+  //
+  // }
   findAvailableRoomsByDate(day) {
     this.bookings.forEach(booking => {
       // console.log(booking.date)

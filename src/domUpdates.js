@@ -15,7 +15,8 @@ const domUpdates = {
     $('.manager-view').toggleClass('hide-class');
     $('.login-page').toggleClass('hide-class');
     $('.total-revenue-today').text(` Total Revenue Today $${manager.revenueToday}`);
-    // $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.percentOfRoomsAvailableToday}%`)
+    $('.percent-full-today').text(` Percent Occupied Today ${manager.percentOfRoomsAvailableToday}%`)
+    $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.numberOfRoomsAvaiableToday}`)
 
 
   },

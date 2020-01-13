@@ -55,7 +55,7 @@ class User extends Hotel {
           // console.log(room.number, booking.roomNumber)
           this.searchedUser.rooms.push(room)
           this.searchedUser.totalSpent = numberOfNights * room.costPerNight;
-
+          // console.log(this.searchedUser.totalSpent)
           // console.log(this.searchedUser.rooms)
         }
       })

@@ -76,4 +76,12 @@ describe('User Class Tests', function() {
     costPerNight: 429.44 } ])
   })
 
+  it('should have a method to find total money spent', () => {
+    user.findUserById(1);
+    user.findUserBookings();
+    user.findRoomsBookedByUser();
+    expect(user.searchedUser.totalSpent).to.equal(358.4)
+
+  })
+
 });

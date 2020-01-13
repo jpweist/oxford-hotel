@@ -51,4 +51,29 @@ describe('Manager', () => {
     expect(manager.revenueToday).to.equal(835);
   });
 
+  it('should have a method to find the percent full', () => {
+    manager.findBookingsToday(dateToday);
+    manager.findPercentBookedToday();
+    expect(manager.percentOfRoomsAvailableToday).to.equal(50);
+  })
+
+  it.skip('should find the Avaiable rooms Today', () => {
+    manager.findBookingsToday(dateToday);
+    expect(manager.roomsAvaiableToday).to.deep.equal([ { number: 2,
+    roomType: 'suite',
+    bedSize: 'full',
+    numBeds: 2,
+    costPerNight: 477.38 },
+  { number: 3,
+    roomType: 'single room',
+    bedSize: 'king',
+    numBeds: 1,
+    costPerNight: 491.14 },
+  { number: 4,
+    roomType: 'single room',
+    bedSize: 'queen',
+    numBeds: 1,
+    costPerNight: 429.44 } ])
+  })
+
 });
