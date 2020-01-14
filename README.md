@@ -1,4 +1,22 @@
-# Webpack Starter Kit
+# Oxford Hotel - haunted 
+This project is by Jim Weist.
+
+for cloning instructions see below...
+
+## This is hotel management tool for hotel customers and staff to manage room bookings and calculate customer bills.
+
+## This Project:
+Use OOP to drive the design of the application and the code
+Work with an API to send and receive data
+Solidify the code review process
+Create a robust test suite that thoroughly tests all functionality of a client-side application
+
+## This Project uses:
+the fetch API to retrieve and add data
+jQuery for making the DOM easier to handle
+Sass for getting fancy with your CSS
+
+
 
 ## Clone This Repo
 
