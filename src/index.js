@@ -6,6 +6,8 @@ import Hotel from './Hotel';
 import Room from './Room';
 import Manager from './Manager';
 import User from './User';
+import './images/icons8-delete-bin-50.png'
+
 
 var hotel, guest, manager, dateToday, user;
 getDateToday()
@@ -69,6 +71,8 @@ $('.login-button').on( "click", () => { // login manager or customer
     makeUser(userName)
     // domUpdates.loadCustomerScreen(parseInt(userName.substring(8, 10)))
     domUpdates.loadCustomerScreen(user);
+    domUpdates.displayBookingsForUser(user);
+
   }
   if (userName !== 'manager' && userpassword !== 'overlook2019' || justName !== 'customer' && userpassword !== 'overlook2019') {
     domUpdates.error()
@@ -95,7 +99,8 @@ function makeManager(userName) {
   console.log(manager.users[10].name)
   // $('.total-revenue-today').text(` Total Revenue Today $${manager.revenueToday}`);
   // $('.number-of-rooms-available-today').text(`Rooms available today: ${manager.percentOfRoomsAvailableToday}%`)
-  domUpdates.loadManagerScreen(manager, dateToday)
+  domUpdates.loadManagerScreen(manager, dateToday);
+  domUpdates.displayAvaiableRoomsForManager(manager);
 }
 
 function makeUser(userName) {
@@ -121,6 +126,7 @@ $('.search-name-button').on( "click", () => {
   manager.findTotalSpendByUser();
   manager.findBookingsToday(dateToday);
   console.log(manager.searchedUser)
+  domUpdates.loadManagerSearch(manager)
 
 })
 
@@ -132,3 +138,9 @@ $('.search-by-date-button').on( "click", () => {
   $('.search-results').append(`${user.roomsAvaiableByDate[0].costPerNight}, ${user.roomsAvaiableByDate[0].roomType}, ${user.roomsAvaiableByDate[0].bedSize} , ${user.roomsAvaiableByDate[0].numBeds}`)
 
 })
+
+// function displayBooking() {
+//    manager.searchedUser.bookings.forEach(booking => {
+//
+//    })
+// }
