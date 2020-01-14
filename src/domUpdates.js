@@ -82,10 +82,14 @@ const domUpdates = {
       // console.log(elem.date)
       $('.user-bookings').append(
         `<div>
-        <span class='booking'><button class="${elem.id}">Delete Booking</button> Date: ${elem.date}, Room: ${elem.roomNumber}</span>
+        <span class='booking'><button class="delete-booking" id="${elem.id}">Delete Booking</button> Date: ${elem.date}, Room: ${elem.roomNumber}</span>
         </div>
         `
       )
+    })
+    $('.delete-booking').on( "click", () => {
+      let bookingId = event.target.id;
+      console.log(bookingId)
     })
   },
   displayAvaiableRoomsForManager(manager) {
@@ -95,11 +99,15 @@ const domUpdates = {
       // console.log(elem.id)
       $('.manager-display').append(
         `<div>
-        <span class='booking'><button id="${elem.number}">Book</button>Room:${elem.number}, Type: ${elem.roomType}, Bed: ${elem.bedSize} $${elem.costPerNight}</span>
+        <span class='booking'><button class="book-room" id="${elem.number}">Book</button>Room:${elem.number}, Type: ${elem.roomType}, Bed: ${elem.bedSize} $${elem.costPerNight}</span>
         </div>
         `
       )
     })
+    $('.book-room').on( "click", () => {
+      let roomNumber = event.target.id;
+      console.log(roomNumber)
+    });
   },
   userDateSearchResults() {
     let userDateSearch = user.roomsAvaiableByDate;
@@ -108,13 +116,10 @@ const domUpdates = {
       // console.log(elem.date)
       $('.manager-display').append(
         `<div>
-        <span class='booking'><button class="${elem.id}">Book</button>Room:${elem.number}, Type: ${elem.roomType}, Bed: ${elem.bedSize} $${elem.costPerNight}</span>
+        <span class='booking'><button id="${elem.id}">Book</button>Room:${elem.number}, Type: ${elem.roomType}, Bed: ${elem.bedSize} $${elem.costPerNight}</span>
         </div>
         `
       )
-    })
-    $('button').on( "click", () => {
-      console.log(event.target)
     })
 
   },

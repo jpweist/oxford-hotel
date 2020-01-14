@@ -143,9 +143,7 @@ $('.search-by-date-button').on( "click", () => {
   domUpdates.userDateSearchResults(user)
 
 })
-$('button').on( "click", () => {
-  console.log(event.target)
-})
+
 
 // function displayBooking() {
 //    manager.searchedUser.bookings.forEach(booking => {
