@@ -16,6 +16,12 @@ the fetch API to retrieve and add data
 jQuery for making the DOM easier to handle
 Sass for getting fancy with your CSS
 
+manager login page 
+![](https://github.com/jpweist/oxford-hotel/blob/master/manager-oxford-hotel.gif)
+
+customer login page
+![](https://github.com/jpweist/oxford-hotel/blob/master/customer-oxford-hotel.gif)
+
 
 
 ## Clone This Repo
