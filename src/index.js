@@ -8,6 +8,9 @@ import Manager from './Manager';
 import User from './User';
 import './images/icons8-delete-bin-50.png'
 
+$('button').on( "click", () => { // !!!$$left off here trying to get button to update fro date data on user page
+  console.log(event.target.class)
+})
 
 var hotel, guest, manager, dateToday, user;
 getDateToday()
@@ -130,13 +133,18 @@ $('.search-name-button').on( "click", () => {
 
 })
 
+
 $('.search-by-date-button').on( "click", () => {
   let date = $('.search-by-date-value').val()
-  // console.log(date)
-  user.findAvailableRoomsByDate(date);
-  // console.log(user.roomsAvaiableByDate);
-  $('.search-results').append(`${user.roomsAvaiableByDate[0].costPerNight}, ${user.roomsAvaiableByDate[0].roomType}, ${user.roomsAvaiableByDate[0].bedSize} , ${user.roomsAvaiableByDate[0].numBeds}`)
 
+  console.log(date)
+  user.findAvailableRoomsByDate(date);
+  console.log(user.roomsAvaiableByDate);
+  domUpdates.userDateSearchResults(user)
+
+})
+$('button').on( "click", () => {
+  console.log(event.target)
 })
 
 // function displayBooking() {

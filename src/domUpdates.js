@@ -92,6 +92,19 @@ const domUpdates = {
     let available = manager.roomsAvailableToday;
     // console.log(available[0])
     available.forEach((elem) => {
+      // console.log(elem.id)
+      $('.manager-display').append(
+        `<div>
+        <span class='booking'><button id="${elem.number}">Book</button>Room:${elem.number}, Type: ${elem.roomType}, Bed: ${elem.bedSize} $${elem.costPerNight}</span>
+        </div>
+        `
+      )
+    })
+  },
+  userDateSearchResults() {
+    let userDateSearch = user.roomsAvaiableByDate;
+    console.log(userDateSearch)
+    available.forEach((elem) => {
       // console.log(elem.date)
       $('.manager-display').append(
         `<div>
@@ -100,6 +113,10 @@ const domUpdates = {
         `
       )
     })
+    $('button').on( "click", () => {
+      console.log(event.target)
+    })
+
   },
 
   error() {
