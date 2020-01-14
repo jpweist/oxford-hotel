@@ -36,6 +36,10 @@ const domUpdates = {
 
       </article>
     </section>`)
+    $('.search-name-button').on( "click", () => {
+      let searchNameValue = $('.search-name-value').val();
+      console.log(searchNameValue);
+    })
 
   },
 
@@ -66,6 +70,10 @@ const domUpdates = {
       </article>
     </section>
   </body>`);
+  $('.search-by-date-button').on( "click", () => {
+    let searchByDateValue = $('.search-by-date-value').val();
+    console.log(searchByDateValue);
+  })
 
 
   },
